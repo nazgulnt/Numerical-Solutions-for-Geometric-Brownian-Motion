@@ -1,6 +1,6 @@
 % Parameters
-T = 1;                % Time horizon
-mu = 0.1;             % Drift coefficient
+T = 1;               
+mu = 0.1;             
 sigma = 0.2;          % Volatility coefficient
 S0 = 1;               % Initial value of the process
 N_values = [20, 50, 100,1000]; % Different time step counts for approximations
@@ -66,7 +66,7 @@ for idx = 1:length(N_values)
     rmse_errors_em(idx) = sqrt(mean((S_em - S_exact_interp).^2));
     rmse_errors_milstein(idx) = sqrt(mean((S_milstein - S_exact_interp).^2));
 
-    % Print errors for this N (optional)
+    % Print errors for this N
     fprintf('N = %d: Max Error (EM) = %.5f, Max Error (Milstein) = %.5f\n', ...
             N, absolute_errors_em(idx), absolute_errors_milstein(idx));
     fprintf('N = %d: RMSE (EM) = %.5f, RMSE (Milstein) = %.5f\n', ...
