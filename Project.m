@@ -79,7 +79,7 @@ for idx = 1:length(N_values)
     plot(t_exact, S_exact, 'b-', 'LineWidth', 0.7); hold on;
     plot(t, S_em, 'r--', 'LineWidth', 1.25);
     plot(t, S_milstein, 'g-.', 'LineWidth', 1.25);
-    legend('Exact Solution (N=100)', 'Euler-Maruyama', 'Milstein', 'Location', 'Best');
+    legend('Exact Solution (N=1000)', 'Euler-Maruyama', 'Milstein', 'Location', 'Best');
     xlabel('Time');
     ylabel('S(t)');
     title(sprintf('Geometric Brownian Motion Approximations (N = %d)', N));
