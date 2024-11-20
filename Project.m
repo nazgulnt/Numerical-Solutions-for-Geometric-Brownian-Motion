@@ -51,7 +51,7 @@ for idx = 1:length(N_values)
         S_em(i+1) = S_em(i) + mu * S_em(i) * dt + sigma * S_em(i) * dW(i);
         
         % Milstein approximation
-        S_milstein(i+1) = S_milstein(i) + mu * S_milstein(i) * dt + sigma * S_milstein(i) * dW(i) ...
+        S_milstein(i+1) = S_milstein(i) + mu * S_milstein(i) * dt + sigma * S_milstein(i) * dW(i)
                           + 0.5 * sigma^2 * S_milstein(i) * (dW(i)^2 - dt);
     end
     
