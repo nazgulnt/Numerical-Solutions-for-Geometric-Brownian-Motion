@@ -99,3 +99,46 @@ xlabel('Number of Time Steps (N) (log scale)');
 ylabel('Error (log scale)');
 title('Error vs Time Step Count');
 grid on;
+
+% Testing Edge Cases for N = 1000
+fprintf('\nTesting Edge Cases for N = 1000:\n');
+
+% Set N = 1000 for testing
+N_test = 1000;
+dt_test = T / N_test;
+t_test = linspace(0, T, N_test+1);  % Time vector for N = 100
+W_test = [0, cumsum(sqrt(dt_test) * randn(1, N_test))];  % Wiener process for N = 100
+
+% Test 1: mu = 0, so we have fluctuations about S0
+mu = 0; sigma = 0.2; S0=1;
+S_test1 = S0 * exp(sigma * W_test); 
+mean_numeric_test1 = mean(S_test1);
+mean_analytical_test1 = S0;
+
+if abs(mean_numeric_test1 - mean_analytical_test1) < 0.05
+    fprintf('Test 1 (mu=0): Passed\n');
+else
+    fprintf('Test 1 (mu=0): Failed\n');
+end
+
+% Test 2: sigma = 0
+mu = 0.1; sigma = 0; S0=1;  % Deterministic exponential growth
+S_test2_numeric = S0 * exp(mu * t_test);  % Numerical solution
+S_test2_analytical = S0 * exp(mu * t_test);  % Analytical solution
+
+if max(abs(S_test2_numeric - S_test2_analytical)) < 1e-6
+    fprintf('Test 2 (sigma = 0): Passed\n');
+else
+    fprintf('Test 2 (sigma = 0): Failed\n');
+end
+
+% Test 3: S0 = 0
+mu = 0.1; sigma = 0.2; S0_test3 = 0;  % Zero initial value
+S_test3 = S0_test3 * exp((mu - 0.5 * sigma^2) * t_test + sigma * W_test);  % Numerical solution
+
+if all(S_test3 == 0)
+    fprintf('Test 3 (S0 = 0): Passed\n');
+else
+    fprintf('Test 3 (S0 = 0): Failed\n');
+end
+
