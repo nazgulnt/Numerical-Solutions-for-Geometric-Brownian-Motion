@@ -100,11 +100,11 @@ ylabel('Error (log scale)');
 title('Error vs Time Step Count');
 grid on;
 
-% Testing Edge Cases for N = 1000
-fprintf('\nTesting Edge Cases for N = 1000:\n');
+% Testing Edge Cases for N = 100
+fprintf('\nTesting Edge Cases for N = 100:\n');
 
-% Set N = 1000 for testing
-N_test = 1000;
+% Set N = 100 for testing
+N_test = 100;
 dt_test = T / N_test;
 t_test = linspace(0, T, N_test+1);  % Time vector for N = 100
 W_test = [0, cumsum(sqrt(dt_test) * randn(1, N_test))];  % Wiener process for N = 100
